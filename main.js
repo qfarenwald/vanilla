@@ -44,9 +44,10 @@ function displayDoughnuts() {
 function generateDoughnut({id, type, filling, topping, star, quality}) {
   doughnutSection.insertAdjacentHTML ('afterbegin',
  `<article class="card-doughnut" data-id=${id}>
-    <h1>${type}</h1>
-    <h1>${filling}</h1>
-    <h1>${topping}</h1>
+    <h1 class="large-o">O</h1>
+    <p>${type}</p>
+    <p>${filling}</p>
+    <p>${topping}</p>
     <button>REMOVE</button>
   </article>`)
 };
