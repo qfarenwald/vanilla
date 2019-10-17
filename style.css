@@ -13,3 +13,9 @@ h1 {
 p {
   margin: 25px;
 }
+
+.card-doughnut{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

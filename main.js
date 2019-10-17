@@ -16,7 +16,7 @@ function makeNewDoughnut(e) {
   var doughnut = new Doughnut(Date.now(), typeInput.value, fillingInput.value, toppingInput.value, false, 0);
   doughnutsArray.push(doughnut);
   doughnut.saveToStorage(doughnutsArray);
-  displayDoughnuts()
+  generateDoughnut(doughnut)
   clearFormInputs()
 }
 
@@ -27,7 +27,7 @@ function clearFormInputs() {
 }
 
 function getDoughnutsFromStorage() {
-  if (JSON.parse(localStorage.getItem('storedDoughnuts'))) {
+  if (JSON.parse(localStorage.getItem('storedDoughnuts')) === null) {
   } else {
     doughnutsArray = JSON.parse(localStorage.getItem('storedDoughnuts')).map(function({id, type, filling, topping, star, quality}) {
       return new Doughnut(id, type, filling, topping, star, quality);
@@ -47,5 +47,6 @@ function generateDoughnut({id, type, filling, topping, star, quality}) {
     <h1>${type}</h1>
     <h1>${filling}</h1>
     <h1>${topping}</h1>
+    <button>REMOVE</button>
   </article>`)
 };
