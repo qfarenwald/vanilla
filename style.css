@@ -47,3 +47,8 @@ button:hover {
 .hidden {
 	display: none;
 }
+
+.div-info {
+  display: flex;
+  margin-left: 45px;
+}
