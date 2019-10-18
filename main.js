@@ -3,10 +3,11 @@ var doughnutsArray = [];
 var typeInput = document.querySelector('.input-type');
 var fillingInput = document.querySelector('.input-filling');
 var toppingInput = document.querySelector('.input-topping');
-var grabBtn = document.querySelector('.btn-grab')
+var grabBtn = document.querySelector('.btn-grab');
 var doughnutSection = document.querySelector('.section-doughnuts');
 
 grabBtn.addEventListener('click', makeNewDoughnut)
+doughnutSection.addEventListener('click', deleteDoughnut)
 
 getDoughnutsFromStorage()
 displayDoughnuts()
@@ -48,6 +49,20 @@ function generateDoughnut({id, type, filling, topping, star, quality}) {
     <p>${type}</p>
     <p>${filling}</p>
     <p>${topping}</p>
-    <button>REMOVE</button>
+    <button class="btn-remove">REMOVE</button>
   </article>`)
 };
+
+function deleteDoughnut(e) {
+  var index = getIndex(e)
+  e.target.closest('article').remove();
+  doughnutsArray[index].deleteFromStorage(index);
+}
+
+function getIndex(e) {
+  var findId = e.target.closest('article').getAttribute('data-id');
+  var index = doughnutsArray.findIndex(function(idea) {
+    return idea.id == findId;
+  })
+  return index;
+}
