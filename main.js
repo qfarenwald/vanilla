@@ -5,20 +5,21 @@ var fillingInput = document.querySelector('.input-filling');
 var toppingInput = document.querySelector('.input-topping');
 var grabBtn = document.querySelector('.btn-grab');
 var doughnutSection = document.querySelector('.section-doughnuts');
+var mainText = document.querySelector('.main-text');
 
-grabBtn.addEventListener('click', makeNewDoughnut)
-doughnutSection.addEventListener('click', deleteDoughnut)
+grabBtn.addEventListener('click', makeNewDoughnut);
+doughnutSection.addEventListener('click', deleteDoughnut);
 
-getDoughnutsFromStorage()
-displayDoughnuts()
+getDoughnutsFromStorage();
+displayDoughnuts();
 
 function makeNewDoughnut(e) {
   e.preventDefault();
   var doughnut = new Doughnut(Date.now(), typeInput.value, fillingInput.value, toppingInput.value, false, 0);
   doughnutsArray.push(doughnut);
   doughnut.saveToStorage(doughnutsArray);
-  generateDoughnut(doughnut)
-  clearFormInputs()
+  generateDoughnut(doughnut);
+  clearFormInputs();
 }
 
 function clearFormInputs() {
@@ -29,10 +30,11 @@ function clearFormInputs() {
 
 function getDoughnutsFromStorage() {
   if (JSON.parse(localStorage.getItem('storedDoughnuts')) === null) {
+    ideaMessage();
   } else {
     doughnutsArray = JSON.parse(localStorage.getItem('storedDoughnuts')).map(function({id, type, filling, topping, star, quality}) {
       return new Doughnut(id, type, filling, topping, star, quality);
-      });
+    });
   }
 }
 
@@ -48,7 +50,8 @@ function generateDoughnut({id, type, filling, topping, star, quality}) {
     <img src="./images/donut1.png" alt="Doughnut">
     <button class="btn-remove">REMOVE</button>
   </article>`)
-};
+  ideaMessage();
+}
 
 function deleteDoughnut(e) {
   var index = getIndex(e)
@@ -62,4 +65,12 @@ function getIndex(e) {
     return idea.id == findId;
   })
   return index;
+}
+
+function ideaMessage() {
+  if (doughnutsArray.length === 0) {
+    mainText.classList.remove('hidden');
+  } else if (doughnutsArray.length !== 0) {
+    mainText.classList.add('hidden');
+  }
 }
