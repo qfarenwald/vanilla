@@ -19,3 +19,17 @@ p {
   display: flex;
   flex-direction: column;
 }
+
+img {
+  width: 300px;
+}
+
+input {
+  margin: 25px 0 0 50px;
+  padding: 10px;
+}
+
+button {
+  margin: 25px 0 0 50px;
+  padding: 10px;
+}
