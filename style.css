@@ -31,8 +31,17 @@ input {
 }
 
 button {
+  background-color: #6DE3D0;
+  border: none;
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: bold;
   margin: 25px 0 50px 50px;
   padding: 10px 20px 10px 20px;
+}
+
+button:hover {
+  background-color: #1AE7CC;
 }
 
 .hidden {
